@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.adityaputra.lsp_olshop.R;
-import com.adityaputra.lsp_olshop.adapter.DeleteShowProdukAdapter;
+import com.adityaputra.lsp_olshop.adapter.HapusShowProdukAdapter;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
 import com.adityaputra.lsp_olshop.api.ApiSevice;
 import com.adityaputra.lsp_olshop.model.ProdukModel;
@@ -30,7 +30,7 @@ public class HapusFragment extends Fragment {
 
 
     private RecyclerView RVItem;
-    private DeleteShowProdukAdapter deleteShowProdukAdapter;
+    private HapusShowProdukAdapter hapusShowProdukAdapter;
     private ArrayList<ProdukModel> produkModel;
 
     public HapusFragment() {
@@ -53,10 +53,10 @@ public class HapusFragment extends Fragment {
             public void onResponse(Call<ArrayList<ProdukModel>> call, Response<ArrayList<ProdukModel>> response) {
                 if (response.isSuccessful()) {
                     produkModel = response.body();
-                    deleteShowProdukAdapter = new DeleteShowProdukAdapter(getActivity(), produkModel);
+                    hapusShowProdukAdapter = new HapusShowProdukAdapter(getActivity(), produkModel);
                     RVItem.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                    RVItem.setAdapter(deleteShowProdukAdapter);
-                    deleteShowProdukAdapter.notifyDataSetChanged();
+                    RVItem.setAdapter(hapusShowProdukAdapter);
+                    hapusShowProdukAdapter.notifyDataSetChanged();
                 }
             }
 

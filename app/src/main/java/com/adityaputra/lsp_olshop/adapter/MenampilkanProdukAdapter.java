@@ -9,31 +9,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.adityaputra.lsp_olshop.DetailActivity;
+import com.adityaputra.lsp_olshop.activity.DetailActivity;
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.model.ProdukModel;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class ShowProdukAdapter extends RecyclerView.Adapter<ShowProdukAdapter.ProdukViewHolder> {
+public class MenampilkanProdukAdapter extends RecyclerView.Adapter<MenampilkanProdukAdapter.ProdukViewHolder> {
 
     private Context context;
     private ArrayList<ProdukModel> list = new ArrayList<>();
 
-    public ShowProdukAdapter(Context context, ArrayList<ProdukModel> list) {
+    public MenampilkanProdukAdapter(Context context, ArrayList<ProdukModel> list) {
         this.context = context;
         this.list = list;
     }
 
     @Override
-    public ShowProdukAdapter.ProdukViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public MenampilkanProdukAdapter.ProdukViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.list_item, viewGroup, false);
         return new ProdukViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ShowProdukAdapter.ProdukViewHolder produkViewHolder, int i) {
+    public void onBindViewHolder(MenampilkanProdukAdapter.ProdukViewHolder produkViewHolder, int i) {
         produkViewHolder.nama.setText(list.get(i).getNamaBarang());
         produkViewHolder.harga.setText(list.get(i).getHargaBarang());
         Glide.with(context).load(list.get(i).getImageBarang()).into(produkViewHolder.gambar);

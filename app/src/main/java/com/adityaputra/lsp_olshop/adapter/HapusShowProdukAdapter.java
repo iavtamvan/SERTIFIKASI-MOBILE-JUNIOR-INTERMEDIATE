@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.adityaputra.lsp_olshop.MainActivity;
+import com.adityaputra.lsp_olshop.activity.MainActivity;
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
 import com.adityaputra.lsp_olshop.api.ApiSevice;
@@ -25,26 +25,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DeleteShowProdukAdapter extends RecyclerView.Adapter<DeleteShowProdukAdapter.ProdukViewHolder> {
+public class HapusShowProdukAdapter extends RecyclerView.Adapter<HapusShowProdukAdapter.ProdukViewHolder> {
 
     private Context context;
     private ArrayList<ProdukModel> list;
 
     private String id;
 
-    public DeleteShowProdukAdapter(Context context, ArrayList<ProdukModel> list) {
+    public HapusShowProdukAdapter(Context context, ArrayList<ProdukModel> list) {
         this.context = context;
         this.list = list;
     }
 
     @Override
-    public DeleteShowProdukAdapter.ProdukViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public HapusShowProdukAdapter.ProdukViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.list_item_delete, viewGroup, false);
         return new ProdukViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(DeleteShowProdukAdapter.ProdukViewHolder produkViewHolder, final int i) {
+    public void onBindViewHolder(HapusShowProdukAdapter.ProdukViewHolder produkViewHolder, final int i) {
         produkViewHolder.nama.setText(list.get(i).getNamaBarang());
         produkViewHolder.harga.setText(list.get(i).getHargaBarang());
         Glide.with(context).load(list.get(i).getImageBarang()).into(produkViewHolder.gambar);

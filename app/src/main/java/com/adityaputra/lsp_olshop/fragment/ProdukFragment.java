@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.adityaputra.lsp_olshop.R;
-import com.adityaputra.lsp_olshop.adapter.ShowProdukAdapter;
+import com.adityaputra.lsp_olshop.adapter.MenampilkanProdukAdapter;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
 import com.adityaputra.lsp_olshop.api.ApiSevice;
 import com.adityaputra.lsp_olshop.model.ProdukModel;
@@ -30,7 +30,7 @@ public class ProdukFragment extends Fragment {
 
 
     private RecyclerView RVItem;
-    private ShowProdukAdapter showProdukAdapter;
+    private MenampilkanProdukAdapter menampilkanProdukAdapter;
     private ArrayList<ProdukModel>  produkModel;
 
     public ProdukFragment() {
@@ -52,21 +52,15 @@ public class ProdukFragment extends Fragment {
             public void onResponse(Call<ArrayList<ProdukModel>> call, Response<ArrayList<ProdukModel>> response) {
                 if (response.isSuccessful()) {
                     produkModel  = response.body();
-                    showProdukAdapter = new ShowProdukAdapter(getActivity(), produkModel);
+                    menampilkanProdukAdapter = new MenampilkanProdukAdapter(getActivity(), produkModel);
                     RVItem.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                    RVItem.setAdapter(showProdukAdapter);
-                    showProdukAdapter.notifyDataSetChanged();
+                    RVItem.setAdapter(menampilkanProdukAdapter);
+                    menampilkanProdukAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<ProdukModel>> call, Throwable t) {
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
                 Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }

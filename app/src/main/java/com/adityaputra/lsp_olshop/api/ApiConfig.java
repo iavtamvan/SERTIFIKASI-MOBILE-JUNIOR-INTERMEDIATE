@@ -7,7 +7,7 @@ public class ApiConfig {
 
     public static ApiSevice getApiService(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://IP KAMU/sertifikasiMobile/")
+                .baseUrl("http://192.168.43.57/local/sertifikasiMobile/")
 //                .baseUrl("http://192.168.43.57/local/sertifikasiMobile/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

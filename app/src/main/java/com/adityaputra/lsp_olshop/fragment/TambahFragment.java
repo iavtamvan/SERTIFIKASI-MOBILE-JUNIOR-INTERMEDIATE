@@ -1,7 +1,6 @@
 package com.adityaputra.lsp_olshop.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.adityaputra.lsp_olshop.MainActivity;
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
 import com.adityaputra.lsp_olshop.api.ApiSevice;
@@ -69,8 +67,6 @@ public class TambahFragment extends Fragment {
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
                                 Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });

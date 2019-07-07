@@ -5,39 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.DetailActivity">
+    tools:context=".activity.UpdateActivity">
 
-    <ImageView
+    <EditText
+        android:id="@+id/edtNamaBarang"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/iv"
-        android:src="@drawable/ic_launcher_foreground"/>
+        android:layout_height="wrap_content"
+        android:hint="Nama Barang" />
 
-    <TextView
+    <EditText
+        android:id="@+id/edtImageBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcNamaBarang"/>
-    <TextView
+        android:hint="Image Barang" />
+
+    <EditText
+        android:id="@+id/edtNDeskripsiBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcDeskripsiBarang"/>
-    <TextView
+        android:hint="Deskripsi Barang" />
+
+    <EditText
+        android:id="@+id/edtHargaBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcHargaBarang"/>
-    <TextView
+        android:hint="Harga Barang" />
+
+    <EditText
+        android:id="@+id/edtStokBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcStokBarang"/>
+        android:hint="Stok Barang" />
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/btnKirim"
-        android:text="Beli"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnEditBarang"
-        android:text="Edit Barang"/>
+        android:text="Update Data" />
+
 </LinearLayout>

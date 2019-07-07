@@ -1,4 +1,4 @@
-package com.adityaputra.lsp_olshop;
+package com.adityaputra.lsp_olshop.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

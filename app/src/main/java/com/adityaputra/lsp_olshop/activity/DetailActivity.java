@@ -1,4 +1,4 @@
-package com.adityaputra.lsp_olshop;
+package com.adityaputra.lsp_olshop.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
 import com.adityaputra.lsp_olshop.api.ApiSevice;
-import com.adityaputra.lsp_olshop.model.ProdukModel;
 import com.bumptech.glide.Glide;
 
 import okhttp3.ResponseBody;
@@ -34,6 +34,7 @@ public class DetailActivity extends AppCompatActivity {
     private String deskripsi_barang;
     private String harga_barang;
     private String stok_barang;
+    private Button btnEditBarang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class DetailActivity extends AppCompatActivity {
                 apiSevice.beliData(id_barang).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             Toast.makeText(DetailActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finishAffinity();
@@ -74,6 +75,20 @@ public class DetailActivity extends AppCompatActivity {
                 });
             }
         });
+
+        btnEditBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, UpdateActivity.class);
+                intent.putExtra("ID_BARANG", id_barang);
+                intent.putExtra("NAMA_BARANG", tcNamaBarang.getText().toString().trim());
+                intent.putExtra("IMAGE_BARANG", image_barang);
+                intent.putExtra("DESKRIPSI_BARANG", tcDeskripsiBarang.getText().toString().trim());
+                intent.putExtra("HARGA_BARANG", tcHargaBarang.getText().toString().trim());
+                intent.putExtra("STOK_BARANG", tcStokBarang.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {
@@ -83,5 +98,6 @@ public class DetailActivity extends AppCompatActivity {
         tcHargaBarang = findViewById(R.id.tcHargaBarang);
         tcStokBarang = findViewById(R.id.tcStokBarang);
         btnKirim = findViewById(R.id.btnKirim);
+        btnEditBarang = findViewById(R.id.btnEditBarang);
     }
 }
