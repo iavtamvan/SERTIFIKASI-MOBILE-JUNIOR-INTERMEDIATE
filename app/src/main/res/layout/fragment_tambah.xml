@@ -1,43 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".fragment.TambahFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/icon_item_name"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignTop="@id/edt_nama_barang"
+        android:layout_alignBottom="@id/edt_nama_barang"
+        android:src="@drawable/shopping_bag" />
 
     <EditText
+        android:id="@+id/edt_nama_barang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtNamaBarang"
-        android:hint="Nama Barang"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/icon_item_name"
+        android:hint="Nama Barang"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/icon_price_tag"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/edt_nama_barang"
+        android:layout_alignTop="@id/edt_harga_barang"
+        android:layout_alignBottom="@id/edt_harga_barang"
+        android:src="@drawable/price_tag" />
+
     <EditText
+        android:id="@+id/edt_harga_barang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtImageBarang"
-        android:hint="Image Barang"/>
+        android:layout_below="@id/edt_nama_barang"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/icon_price_tag"
+        android:hint="Harga Barang"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/icon_minus"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/edt_harga_barang"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_minus" />
+
+    <ImageView
+        android:id="@+id/icon_plus"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/edt_harga_barang"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_plus" />
+
     <EditText
+        android:id="@+id/edt_stok_barang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtNDeskripsiBarang"
-        android:hint="Deskripsi Barang"/>
+        android:layout_below="@id/edt_harga_barang"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:layout_toLeftOf="@id/icon_plus"
+        android:layout_toRightOf="@id/icon_minus"
+        android:hint="Stok Barang"
+        android:textSize="12sp" />
+
     <EditText
+        android:id="@+id/edt_deskripsi_barang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtHargaBarang"
-        android:hint="Harga Barang"/>
+        android:layout_below="@id/edt_stok_barang"
+        android:layout_marginBottom="10dp"
+        android:gravity="left|top"
+        android:hint="Masukkan Deskripsi Barang"
+        android:minHeight="60dp"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/edt_deskripsi_barang"
+        android:background="#A7A7A7" />
+
     <EditText
+        android:id="@+id/edt_url_gambar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtStokBarang"
-        android:hint="Stok Barang"/>
+        android:layout_below="@id/edt_deskripsi_barang"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iv_photo"
+        android:hint="Masukkan Url Gambar"
+        android:textSize="12sp" />
 
     <Button
+        android:id="@+id/btn_cek_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_url_gambar"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iv_photo"
+        android:text="Cek Url Foto" />
+
+    <Button
+        android:id="@+id/btn_kirim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnKirim"
-        android:text="Kirim"/>
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:text="Buat Barang" />
+
+</RelativeLayout>

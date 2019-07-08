@@ -77,11 +77,11 @@ public class TambahFragment extends Fragment {
     }
 
     private void initView(View view) {
-        edtNamaBarang = view.findViewById(R.id.edtNamaBarang);
-        edtImageBarang = view.findViewById(R.id.edtImageBarang);
-        edtNDeskripsiBarang = view.findViewById(R.id.edtNDeskripsiBarang);
-        edtHargaBarang = view.findViewById(R.id.edtHargaBarang);
-        edtStokBarang = view.findViewById(R.id.edtStokBarang);
-        btnKirim = view.findViewById(R.id.btnKirim);
+        edtNamaBarang = view.findViewById(R.id.edt_nama_barang);
+        edtImageBarang = view.findViewById(R.id.edt_url_gambar);
+        edtNDeskripsiBarang = view.findViewById(R.id.edt_deskripsi_barang);
+        edtHargaBarang = view.findViewById(R.id.edt_harga_barang);
+        edtStokBarang = view.findViewById(R.id.edt_stok_barang);
+        btnKirim = view.findViewById(R.id.btn_kirim);
     }
 }
