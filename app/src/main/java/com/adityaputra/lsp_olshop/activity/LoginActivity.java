@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        edtUsername = findViewById(R.id.edtUsername);
-        edtPassword = findViewById(R.id.edtPassword);
-        btnLogin = findViewById(R.id.btnLogin);
+        edtUsername = findViewById(R.id.edt_username);
+        edtPassword = findViewById(R.id.edt_password);
+        btnLogin = findViewById(R.id.btn_masuk);
     }
 }
