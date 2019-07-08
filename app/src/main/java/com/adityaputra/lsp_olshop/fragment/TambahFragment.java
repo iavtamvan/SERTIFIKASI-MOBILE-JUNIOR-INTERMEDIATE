@@ -2,6 +2,7 @@ package com.adityaputra.lsp_olshop.fragment;
 
 
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -42,8 +43,12 @@ public class TambahFragment extends Fragment {
     private EditText edtHargaBarang;
     private EditText edtStokBarang;
     private ImageView ivPhoto;
+    private ImageView ivPlus;
+    private ImageView ivMinus;
     private Button btnKirim;
     private Button btnCekUrl;
+
+    private int stokBarang = 0;
 
     public TambahFragment() {
         // Required empty public constructor
@@ -107,9 +112,63 @@ public class TambahFragment extends Fragment {
             }
         });
 
+        edtStokBarang.setText(""+stokBarang);
+        ivPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtStokBarang.getText().toString().isEmpty()){
+                    resetStokBarang();
+                    tambahStokBarang();
+                }else {
+                    tambahStokBarang();
+                }
+            }
+        });
 
+        ivMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtStokBarang.getText().toString().isEmpty()){
+                    resetStokBarang();
+                    kurangStokBarang();
+                }else {
+                    kurangStokBarang();
+                }
+            }
+        });
 
         return view;
+    }
+
+    private void kurangStokBarang() {
+        try {
+            stokBarang = Integer.parseInt(edtStokBarang.getText().toString());
+            if (stokBarang==0){
+                Toast.makeText(getActivity(), "Barang tidak bisa kurang dari 0", Toast.LENGTH_SHORT).show();
+            }else {
+                stokBarang = stokBarang - 1;
+                edtStokBarang.setText(""+stokBarang);
+            }
+        }catch (NumberFormatException nfe){
+            resetStokBarang();
+            kurangStokBarang();
+        }
+    }
+
+    private void resetStokBarang() {
+        stokBarang = 0;
+        edtStokBarang.setText(""+stokBarang);
+    }
+
+    private void tambahStokBarang() {
+        try {
+            stokBarang = Integer.parseInt(edtStokBarang.getText().toString());
+            stokBarang = stokBarang + 1;
+            edtStokBarang.setText(""+stokBarang);
+        }catch (NumberFormatException nfe){
+            resetStokBarang();
+            tambahStokBarang();
+        }
     }
 
     private void initView(View view) {
@@ -119,6 +178,8 @@ public class TambahFragment extends Fragment {
         edtHargaBarang = view.findViewById(R.id.edt_harga_barang);
         edtStokBarang = view.findViewById(R.id.edt_stok_barang);
         ivPhoto = view.findViewById(R.id.iv_photo);
+        ivPlus = view.findViewById(R.id.icon_plus);
+        ivMinus = view.findViewById(R.id.icon_minus);
         btnKirim = view.findViewById(R.id.btn_kirim);
         btnCekUrl = view.findViewById(R.id.btn_cek_url);
     }
