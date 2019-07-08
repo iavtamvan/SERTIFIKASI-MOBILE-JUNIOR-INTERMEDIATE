@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.fragment.HapusFragment;
 import com.adityaputra.lsp_olshop.fragment.ProdukFragment;
 import com.adityaputra.lsp_olshop.fragment.TambahFragment;

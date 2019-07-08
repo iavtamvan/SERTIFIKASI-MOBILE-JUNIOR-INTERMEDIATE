@@ -7,7 +7,7 @@ public class ApiConfig {
 
     public static ApiSevice getApiService(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.57/local/sertifikasiMobile/")
+                .baseUrl("http://sig.upgris.ac.id/api_iav/sertifikasi_android/")
 //                .baseUrl("http://192.168.43.57/local/sertifikasiMobile/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
