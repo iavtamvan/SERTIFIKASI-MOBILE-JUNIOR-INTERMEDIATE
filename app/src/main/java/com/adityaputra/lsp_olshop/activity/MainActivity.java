@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("SHARED_LOGIN", "");
             editor.apply();
+            finishAffinity();
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
         }
