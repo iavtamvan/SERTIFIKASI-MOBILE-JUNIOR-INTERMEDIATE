@@ -5,14 +5,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiConfig {
 
-    public static ApiSevice getApiService(){
+    public static ApiService getApiService(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://sig.upgris.ac.id/api_iav/sertifikasi_android/")
-//                .baseUrl("http://192.168.43.57/local/sertifikasiMobile/")
+                .baseUrl("http://10.10.2.225/APIMobile/")
+//                .baseUrl("http://sig.upgris.ac.id/api_iav/sertifikasi_android/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ApiSevice service =retrofit.create(ApiSevice.class);
+        ApiService service =retrofit.create(ApiService.class);
         return service;
     }
 }

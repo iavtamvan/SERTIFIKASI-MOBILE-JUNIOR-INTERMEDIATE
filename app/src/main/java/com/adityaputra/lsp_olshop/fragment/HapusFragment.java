@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.adapter.HapusShowProdukAdapter;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
-import com.adityaputra.lsp_olshop.api.ApiSevice;
+import com.adityaputra.lsp_olshop.api.ApiService;
 import com.adityaputra.lsp_olshop.model.ProdukModel;
 
 import java.util.ArrayList;
@@ -47,11 +47,12 @@ public class HapusFragment extends Fragment {
 
         produkModel = new ArrayList<>();
 
-        ApiSevice apiSevice = ApiConfig.getApiService();
-        apiSevice.ambilData().enqueue(new Callback<ArrayList<ProdukModel>>() {
+        ApiService apiService = ApiConfig.getApiService();
+        apiService.ambilData().enqueue(new Callback<ArrayList<ProdukModel>>() {
             @Override
             public void onResponse(Call<ArrayList<ProdukModel>> call, Response<ArrayList<ProdukModel>> response) {
                 if (response.isSuccessful()) {
+                    produkModel.clear();
                     produkModel = response.body();
                     hapusShowProdukAdapter = new HapusShowProdukAdapter(getActivity(), produkModel);
                     RVItem.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -63,13 +64,6 @@ public class HapusFragment extends Fragment {
             @Override
             public void onFailure(Call<ArrayList<ProdukModel>> call, Throwable t) {
                 Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-
             }
         });
 

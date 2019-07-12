@@ -1,6 +1,7 @@
 package com.adityaputra.lsp_olshop.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,7 +11,12 @@ import android.widget.Toast;
 
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
-import com.adityaputra.lsp_olshop.api.ApiSevice;
+import com.adityaputra.lsp_olshop.api.ApiService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -32,22 +38,49 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ApiSevice apiSevice = ApiConfig.getApiService();
-                apiSevice.login(edtUsername.getText().toString().trim(), edtPassword.getText().toString().trim()).enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "Berhasil Login", Toast.LENGTH_SHORT).show();
-                            finishAffinity();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        }
-                    }
+                ApiService apiService = ApiConfig.getApiService();
+                apiService.login(edtUsername.getText().toString().trim(),
+                        edtPassword.getText().toString().trim()).
+                        enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response.body().string());
+                                        String error = jsonObject.optString("error_msg");
+                                        if (error.equalsIgnoreCase("Login Sukses")){
+                                            Toast.makeText(LoginActivity.this, "" +
+                                                    error, Toast.LENGTH_SHORT).show();
+                                            finishAffinity();
+                                            startActivity(new Intent(getApplicationContext(),
+                                                    MainActivity.class));
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                                            SharedPreferences sharedPreferences = getSharedPreferences("LSP",
+                                                    MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putString("SHARED_LOGIN", error);
+                                            editor.apply();
+                                        } else {
+                                            Toast.makeText(LoginActivity.this, "" +
+                                                    error, Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Login Gagal",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(LoginActivity.this, "" + t.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
     }

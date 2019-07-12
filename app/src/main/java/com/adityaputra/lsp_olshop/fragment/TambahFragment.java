@@ -2,7 +2,6 @@ package com.adityaputra.lsp_olshop.fragment;
 
 
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
-import com.adityaputra.lsp_olshop.api.ApiSevice;
+import com.adityaputra.lsp_olshop.api.ApiService;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -61,30 +60,36 @@ public class TambahFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
         initView(view);
-
-        btnKirim.setOnClickListener(v -> {
-            ApiSevice apiSevice = ApiConfig.getApiService();
-            apiSevice.tambahData(edtNamaBarang.getText().toString().trim(), edtImageBarang.getText().toString().trim(),
-                    edtNDeskripsiBarang.getText().toString().trim(), edtHargaBarang.getText().toString().trim(),
-                    edtStokBarang.getText().toString().trim())
-                    .enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            if (response.isSuccessful()) {
-                                Toast.makeText(getActivity(), "Sukses Tambah", Toast.LENGTH_SHORT).show();
-                                edtNamaBarang.setText("");
-                                edtImageBarang.setText("");
-                                edtNDeskripsiBarang.setText("");
-                                edtHargaBarang.setText("");
-                                edtStokBarang.setText("");
+        btnKirim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ApiService apiService = ApiConfig.getApiService();
+                apiService.tambahData(edtNamaBarang.getText().toString().trim(),
+                        edtImageBarang.getText().toString().trim(),
+                        edtNDeskripsiBarang.getText().toString().trim(),
+                        edtHargaBarang.getText().toString().trim(),
+                        edtStokBarang.getText().toString().trim())
+                        .enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(getActivity(), "Sukses Tambah",
+                                            Toast.LENGTH_SHORT).show();
+                                    edtNamaBarang.setText("");
+                                    edtImageBarang.setText("");
+                                    edtNDeskripsiBarang.setText("");
+                                    edtHargaBarang.setText("");
+                                    edtStokBarang.setText("");
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getActivity(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(getActivity(), "" + t.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
         });
 
         /*TODO Add listener and function to check and show the result of image url*/

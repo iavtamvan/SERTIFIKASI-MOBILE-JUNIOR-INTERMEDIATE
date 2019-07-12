@@ -7,16 +7,10 @@
     android:orientation="vertical"
     tools:context=".fragment.ProdukFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/menu_produk"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="20sp" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/RVItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

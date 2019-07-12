@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
-import com.adityaputra.lsp_olshop.api.ApiSevice;
+import com.adityaputra.lsp_olshop.api.ApiService;
 import com.bumptech.glide.Glide;
 
 import okhttp3.ResponseBody;
@@ -28,12 +28,14 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tcStokBarang;
     private Button btnKirim;
 
-    private String id_barang;
-    private String nama_barang;
-    private String image_barang;
-    private String deskripsi_barang;
-    private String harga_barang;
-    private String stok_barang;
+    private String idBarang;
+    private String namaBarang;
+    private String imageBarang;
+    private String deskripsiBarang;
+    private String hargaBarang;
+    private String stokBarang;
+
+
     private Button btnEditBarang;
 
     @Override
@@ -41,28 +43,33 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         initView();
-        id_barang = getIntent().getStringExtra("ID_BARANG");
-        nama_barang = getIntent().getStringExtra("NAMA_BARANG");
-        image_barang = getIntent().getStringExtra("IMAGE_BARANG");
-        deskripsi_barang = getIntent().getStringExtra("DESKRIPSI_BARANG");
-        harga_barang = getIntent().getStringExtra("HARGA_BARANG");
-        stok_barang = getIntent().getStringExtra("STOK_BARANG");
 
-        Glide.with(this).load(image_barang).override(512, 512).into(iv);
-        tcNamaBarang.setText(nama_barang);
-        tcDeskripsiBarang.setText(deskripsi_barang);
-        tcHargaBarang.setText(harga_barang);
-        tcStokBarang.setText(stok_barang);
+        idBarang = getIntent().getStringExtra("ID_BARANG");
+        namaBarang = getIntent().getStringExtra("NAMA_BARANG");
+        imageBarang = getIntent().getStringExtra("IMAGE_BARANG");
+        deskripsiBarang = getIntent().getStringExtra("DESKRIPSI_BARANG");
+        hargaBarang = getIntent().getStringExtra("HARGA_BARANG");
+        stokBarang = getIntent().getStringExtra("STOK_BARANG");
+
+        Glide.with(this).load(imageBarang).
+                override(512, 512)
+                .into(iv);
+        tcNamaBarang.setText(namaBarang);
+        tcDeskripsiBarang.setText(deskripsiBarang);
+        tcHargaBarang.setText(hargaBarang);
+        tcStokBarang.setText(stokBarang);
+
 
         btnKirim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApiSevice apiSevice = ApiConfig.getApiService();
-                apiSevice.beliData(id_barang).enqueue(new Callback<ResponseBody>() {
+                ApiService apiService = ApiConfig.getApiService();
+                apiService.beliData(idBarang).enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(DetailActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DetailActivity.this, "Sukses",
+                                    Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finishAffinity();
                         }
@@ -70,7 +77,8 @@ public class DetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(DetailActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailActivity.this, "" + t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -80,9 +88,9 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailActivity.this, UpdateActivity.class);
-                intent.putExtra("ID_BARANG", id_barang);
+                intent.putExtra("ID_BARANG", idBarang);
                 intent.putExtra("NAMA_BARANG", tcNamaBarang.getText().toString().trim());
-                intent.putExtra("IMAGE_BARANG", image_barang);
+                intent.putExtra("IMAGE_BARANG", imageBarang);
                 intent.putExtra("DESKRIPSI_BARANG", tcDeskripsiBarang.getText().toString().trim());
                 intent.putExtra("HARGA_BARANG", tcHargaBarang.getText().toString().trim());
                 intent.putExtra("STOK_BARANG", tcStokBarang.getText().toString().trim());

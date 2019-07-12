@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
-import com.adityaputra.lsp_olshop.api.ApiSevice;
+import com.adityaputra.lsp_olshop.api.ApiService;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -26,30 +26,31 @@ public class UpdateActivity extends AppCompatActivity {
     private EditText edtStokBarang;
     private Button btnKirim;
 
-    private String id_barang;
-    private String nama_barang;
-    private String image_barang;
-    private String deskripsi_barang;
-    private String harga_barang;
-    private String stok_barang;
+    private String idBarang;
+    private String namaBarang;
+    private String imageBarang;
+    private String deskripsiBarang;
+    private String hargaBarang;
+    private String stokBarang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         initView();
-        id_barang = getIntent().getStringExtra("ID_BARANG");
-        nama_barang = getIntent().getStringExtra("NAMA_BARANG");
-        image_barang = getIntent().getStringExtra("IMAGE_BARANG");
-        deskripsi_barang = getIntent().getStringExtra("DESKRIPSI_BARANG");
-        harga_barang = getIntent().getStringExtra("HARGA_BARANG");
-        stok_barang = getIntent().getStringExtra("STOK_BARANG");
+        idBarang = getIntent().getStringExtra("ID_BARANG");
+        namaBarang = getIntent().getStringExtra("NAMA_BARANG");
+        imageBarang = getIntent().getStringExtra("IMAGE_BARANG");
+        deskripsiBarang = getIntent().getStringExtra("DESKRIPSI_BARANG");
+        hargaBarang = getIntent().getStringExtra("HARGA_BARANG");
+        stokBarang = getIntent().getStringExtra("STOK_BARANG");
 
-        edtNamaBarang.setText(nama_barang);
-        edtImageBarang.setText(image_barang);
-        edtNDeskripsiBarang.setText(deskripsi_barang);
-        edtHargaBarang.setText(harga_barang);
-        edtStokBarang.setText(stok_barang);
+
+        edtNamaBarang.setText(namaBarang);
+        edtImageBarang.setText(imageBarang);
+        edtNDeskripsiBarang.setText(deskripsiBarang);
+        edtHargaBarang.setText(hargaBarang);
+        edtStokBarang.setText(stokBarang);
 
         btnKirim.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,14 +61,19 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updateBarang() {
-        ApiSevice apiSevice = ApiConfig.getApiService();
-        apiSevice.updateData(id_barang, edtNamaBarang.getText().toString().trim(), edtImageBarang.getText().toString().trim(),
-                edtNDeskripsiBarang.getText().toString().trim(), edtHargaBarang.getText().toString().trim(),
-                edtStokBarang.getText().toString().trim()).enqueue(new Callback<ResponseBody>() {
+        ApiService apiService = ApiConfig.getApiService();
+        apiService.updateData(idBarang,
+                edtNamaBarang.getText().toString().trim(),
+                edtImageBarang.getText().toString().trim(),
+                edtNDeskripsiBarang.getText().toString().trim(),
+                edtHargaBarang.getText().toString().trim(),
+                edtStokBarang.getText().toString().trim())
+                .enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(UpdateActivity.this, "Sukses Diperbarui", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateActivity.this, "Sukses Diperbarui",
+                            Toast.LENGTH_SHORT).show();
                     finishAffinity();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
@@ -77,7 +83,8 @@ public class UpdateActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(UpdateActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateActivity.this, "" + t.getMessage(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -95,21 +95,21 @@ public class MainActivity extends AppCompatActivity
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .add(R.id.frameFragment, new ProdukFragment())
-                    .addToBackStack("fragment")
+//                    .addToBackStack("fragment")
                     .commit();
             getSupportActionBar().setTitle("Produk");
         } else if (id == R.id.nav_tambah) {
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .add(R.id.frameFragment, new TambahFragment())
-                    .addToBackStack("fragment")
+//                    .addToBackStack("fragment")
                     .commit();
             getSupportActionBar().setTitle("Tambah Produk");
         } else if (id == R.id.nav_hapus) {
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
                     .add(R.id.frameFragment, new HapusFragment())
-                    .addToBackStack("fragment")
+//                    .addToBackStack("fragment")
                     .commit();
             getSupportActionBar().setTitle("Hapus Produk");
 
