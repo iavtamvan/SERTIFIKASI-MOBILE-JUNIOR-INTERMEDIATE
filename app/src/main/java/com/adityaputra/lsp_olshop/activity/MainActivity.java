@@ -1,5 +1,7 @@
 package com.adityaputra.lsp_olshop.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -112,6 +114,13 @@ public class MainActivity extends AppCompatActivity
 //                    .addToBackStack("fragment")
                     .commit();
             getSupportActionBar().setTitle("Hapus Produk");
+
+        }else if (id == R.id.nav_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("LSP" , MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("SHARED_LOGIN", "");
+            editor.apply();
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
         }
 
