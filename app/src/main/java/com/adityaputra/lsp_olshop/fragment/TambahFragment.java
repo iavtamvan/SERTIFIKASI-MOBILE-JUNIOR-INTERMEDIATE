@@ -5,6 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +51,7 @@ public class TambahFragment extends Fragment {
     private Button btnCekUrl;
 
     private int stokBarang = 0;
+    private CardView cvImage;
 
     public TambahFragment() {
         // Required empty public constructor
@@ -89,6 +93,37 @@ public class TambahFragment extends Fragment {
                     });
         });
 
+        edtImageBarang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                cvImage.setVisibility(View.VISIBLE);
+                Glide.with(Objects.requireNonNull(getActivity()))
+                        .load(charSequence.toString().trim())
+                        .addListener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                Toast.makeText(getActivity(), "Url Tidak Valid", Toast.LENGTH_SHORT).show();
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                return false;
+                            }
+                        })
+                        .into(ivPhoto);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         /*TODO Add listener and function to check and show the result of image url*/
         btnCekUrl.setOnClickListener(v -> {
             //TODO Check url image is empty or not
@@ -96,6 +131,7 @@ public class TambahFragment extends Fragment {
                 edtImageBarang.setError("Silahkan masukkan url gambar");
                 edtImageBarang.requestFocus();
             } else {
+                cvImage.setVisibility(View.VISIBLE);
                 Glide.with(Objects.requireNonNull(getActivity()))
                         .load(edtImageBarang.getText().toString())
                         .addListener(new RequestListener<Drawable>() {
@@ -114,21 +150,21 @@ public class TambahFragment extends Fragment {
             }
         });
 
-        edtStokBarang.setText(""+stokBarang);
+        edtStokBarang.setText("" + stokBarang);
         ivPlus.setOnClickListener(v -> {
-            if (edtStokBarang.getText().toString().isEmpty()){
+            if (edtStokBarang.getText().toString().isEmpty()) {
                 resetStokBarang();
                 tambahStokBarang();
-            }else {
+            } else {
                 tambahStokBarang();
             }
         });
 
         ivMinus.setOnClickListener(v -> {
-            if (edtStokBarang.getText().toString().isEmpty()){
+            if (edtStokBarang.getText().toString().isEmpty()) {
                 resetStokBarang();
                 kurangStokBarang();
-            }else {
+            } else {
                 kurangStokBarang();
             }
         });
@@ -139,13 +175,13 @@ public class TambahFragment extends Fragment {
     private void kurangStokBarang() {
         try {
             stokBarang = Integer.parseInt(edtStokBarang.getText().toString());
-            if (stokBarang==0){
+            if (stokBarang == 0) {
                 Toast.makeText(getActivity(), "Barang tidak bisa kurang dari 0", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 stokBarang = stokBarang - 1;
-                edtStokBarang.setText(""+stokBarang);
+                edtStokBarang.setText("" + stokBarang);
             }
-        }catch (NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             resetStokBarang();
             kurangStokBarang();
         }
@@ -153,15 +189,15 @@ public class TambahFragment extends Fragment {
 
     private void resetStokBarang() {
         stokBarang = 0;
-        edtStokBarang.setText(""+stokBarang);
+        edtStokBarang.setText("" + stokBarang);
     }
 
     private void tambahStokBarang() {
         try {
             stokBarang = Integer.parseInt(edtStokBarang.getText().toString());
             stokBarang = stokBarang + 1;
-            edtStokBarang.setText(""+stokBarang);
-        }catch (NumberFormatException nfe){
+            edtStokBarang.setText("" + stokBarang);
+        } catch (NumberFormatException nfe) {
             resetStokBarang();
             tambahStokBarang();
         }
@@ -178,5 +214,6 @@ public class TambahFragment extends Fragment {
         ivMinus = view.findViewById(R.id.icon_minus);
         btnKirim = view.findViewById(R.id.btn_kirim);
         btnCekUrl = view.findViewById(R.id.btn_cek_url);
+        cvImage = view.findViewById(R.id.cv_image);
     }
 }

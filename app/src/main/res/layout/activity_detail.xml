@@ -1,43 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".activity.DetailActivity">
 
     <ImageView
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:id="@+id/iv"
-        android:src="@drawable/ic_launcher_foreground"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher_foreground" />
 
     <TextView
+        android:id="@+id/tcNamaBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcNamaBarang"/>
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Nama Barang"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
     <TextView
+        android:id="@+id/tcDeskripsiBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcDeskripsiBarang"/>
+        android:fontFamily="@font/roboto_medium"
+        android:text="Deskripsi"
+        android:textSize="12dp" />
+
     <TextView
+        android:id="@+id/tcHargaBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcHargaBarang"/>
+        android:text="4444"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
     <TextView
+        android:id="@+id/tcStokBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tcStokBarang"/>
+        android:text="4 Tersisa"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_alamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alamatt"
+        android:textColor="@color/grey" />
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/btnKirim"
-        android:text="Beli"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:text="Beli" />
+
+    <Button
         android:id="@+id/btnEditBarang"
-        android:text="Edit Barang"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Edit Barang" />
 </LinearLayout>

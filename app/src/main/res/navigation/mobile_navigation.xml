@@ -26,6 +26,6 @@
     <fragment
         android:id="@+id/profil"
         android:name="com.adityaputra.lsp_olshop.fragment.ProfilFragment"
-        android:label="@string/hapus_produk"
-        tools:layout="@layout/fragment_hapus" />
+        android:label="@string/profil"
+        tools:layout="@layout/fragment_profil" />
 </navigation>

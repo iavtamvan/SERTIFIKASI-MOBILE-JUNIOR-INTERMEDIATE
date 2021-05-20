@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.adityaputra.lsp_olshop.activity.DetailActivity;
-import com.adityaputra.lsp_olshop.activity.MainActivity;
+import com.adityaputra.lsp_olshop.activity.HomeActivity;
 import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
 import com.adityaputra.lsp_olshop.api.ApiService;
@@ -52,40 +51,8 @@ public class HapusShowProdukAdapter extends RecyclerView.Adapter<HapusShowProduk
     @Override
     public void onBindViewHolder(HapusShowProdukAdapter.ProdukViewHolder produkViewHolder, final int i) {
         produkViewHolder.nama.setText(list.get(i).getNamaBarang());
-        produkViewHolder.harga.setText(list.get(i).getHargaBarang());
+        produkViewHolder.harga.setText(String.valueOf(list.get(i).getHargaBarang()));
         Glide.with(context).load(list.get(i).getImageBarang()).into(produkViewHolder.gambar);
-//        id = list.get(i).getIdBarang();
-//        produkViewHolder.button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ApiService apiService = ApiConfig.getApiService();
-//                apiService.deleteData(id).enqueue(new Callback<ResponseBody>() {
-//                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                        if (response.isSuccessful()){
-//
-//                            try {
-//                                JSONObject jsonObject = new JSONObject(response.body().string());
-//                                String error = jsonObject.optString("error_msg");
-//                                Toast.makeText(context, "" + error, Toast.LENGTH_SHORT).show();
-//                                context.startActivity(new Intent(context, MainActivity.class));
-//                                ((Activity)context).finishAffinity();
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                        Toast.makeText(context, "" + t.getMessage(),
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
     }
 
     @Override
@@ -116,7 +83,7 @@ public class HapusShowProdukAdapter extends RecyclerView.Adapter<HapusShowProduk
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String error = jsonObject.optString("error_msg");
                                 Toast.makeText(context, "" + error, Toast.LENGTH_SHORT).show();
-                                context.startActivity(new Intent(context, MainActivity.class));
+                                context.startActivity(new Intent(context, HomeActivity.class));
                                 ((Activity) context).finishAffinity();
                             } catch (JSONException e) {
                                 e.printStackTrace();

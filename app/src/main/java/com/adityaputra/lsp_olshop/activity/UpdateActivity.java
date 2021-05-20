@@ -70,7 +70,7 @@ public class UpdateActivity extends AppCompatActivity {
                     Toast.makeText(UpdateActivity.this, "Sukses Diperbarui",
                             Toast.LENGTH_SHORT).show();
                     finishAffinity();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
 
                     // TODO bisa mbok kasih ALert Diaolog mas.
                 }

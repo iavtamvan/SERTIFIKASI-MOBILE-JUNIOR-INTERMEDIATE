@@ -50,7 +50,6 @@ public class ProdukFragment extends Fragment {
 
         return view;
 
-
     }
 
     @Override

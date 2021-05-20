@@ -11,7 +11,7 @@ public class ProdukModel {
     private String namaBarang;
 
     @SerializedName("harga_barang")
-    private String hargaBarang;
+    private double hargaBarang;
 
     @SerializedName("deskripsi_barang")
     private String deskripsiBarang;
@@ -49,11 +49,11 @@ public class ProdukModel {
         return namaBarang;
     }
 
-    public void setHargaBarang(String hargaBarang) {
+    public void setHargaBarang(double        hargaBarang) {
         this.hargaBarang = hargaBarang;
     }
 
-    public String getHargaBarang() {
+    public double getHargaBarang() {
         return hargaBarang;
     }
 

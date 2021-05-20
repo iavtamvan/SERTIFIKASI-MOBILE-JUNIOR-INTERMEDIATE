@@ -1,6 +1,7 @@
 package com.adityaputra.lsp_olshop.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,9 @@ import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.api.ApiConfig;
 import com.adityaputra.lsp_olshop.api.ApiService;
 import com.bumptech.glide.Glide;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -32,11 +36,13 @@ public class DetailActivity extends AppCompatActivity {
     private String namaBarang;
     private String imageBarang;
     private String deskripsiBarang;
-    private String hargaBarang;
+    private double hargaBarang;
     private String stokBarang;
+    private String alamat;
 
 
     private Button btnEditBarang;
+    private TextView tvAlamat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +54,28 @@ public class DetailActivity extends AppCompatActivity {
         namaBarang = getIntent().getStringExtra("NAMA_BARANG");
         imageBarang = getIntent().getStringExtra("IMAGE_BARANG");
         deskripsiBarang = getIntent().getStringExtra("DESKRIPSI_BARANG");
-        hargaBarang = getIntent().getStringExtra("HARGA_BARANG");
+        hargaBarang = Double.parseDouble(getIntent().getStringExtra("HARGA_BARANG"));
         stokBarang = getIntent().getStringExtra("STOK_BARANG");
+        alamat = getIntent().getStringExtra("ALAMAT");
 
         Glide.with(this).load(imageBarang).
                 override(512, 512)
                 .into(iv);
         tcNamaBarang.setText(namaBarang);
         tcDeskripsiBarang.setText(deskripsiBarang);
-        tcHargaBarang.setText(hargaBarang);
-        tcStokBarang.setText(stokBarang);
 
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
+        tcHargaBarang.setText(formatRupiah.format((double)hargaBarang));
+        tcStokBarang.setText(stokBarang + " Tersisa");
+        tvAlamat.setText(alamat);
+
+        tvAlamat.setOnClickListener(view -> {
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("google.navigation:q=" + tvAlamat.getText().toString().trim()));
+            startActivity(intent);
+        });
 
         btnKirim.setOnClickListener(v -> {
             ApiService apiService = ApiConfig.getApiService();
@@ -68,7 +85,7 @@ public class DetailActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Toast.makeText(DetailActivity.this, "Sukses",
                                 Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         finishAffinity();
                     }
                 }
@@ -104,5 +121,6 @@ public class DetailActivity extends AppCompatActivity {
         tcStokBarang = findViewById(R.id.tcStokBarang);
         btnKirim = findViewById(R.id.btnKirim);
         btnEditBarang = findViewById(R.id.btnEditBarang);
+        tvAlamat = findViewById(R.id.tv_alamat);
     }
 }

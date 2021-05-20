@@ -10,30 +10,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/IVProduk"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
-
-        <TextView
-            android:id="@+id/TVNama"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tas Hitam"
-            android:textSize="20sp" />
+            android:padding="10dp"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/IVProduk"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="fitXY" />
 
-        <TextView
-            android:id="@+id/TVHarga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rp. 150000"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/TVNama"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Tas Hitam"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/TVHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:text="Rp. 150000"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="10dp"
             android:id="@+id/btnDelete"
             android:text="Delete"/>
     </LinearLayout>

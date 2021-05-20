@@ -28,7 +28,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             // TODO jika sudah nantinya akan masuk ke Home
             else {
                 finishAffinity();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
 
             }
         }, 2000);

@@ -1,123 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".fragment.TambahFragment">
 
-    <ImageView
-        android:id="@+id/icon_item_name"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignTop="@id/edt_nama_barang"
-        android:layout_alignBottom="@id/edt_nama_barang"
-        android:src="@drawable/shopping_bag" />
-
-    <EditText
-        android:id="@+id/edt_nama_barang"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toRightOf="@id/icon_item_name"
-        android:hint="Nama Barang"
-        android:textSize="12sp" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/icon_price_tag"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_below="@id/edt_nama_barang"
-        android:layout_alignTop="@id/edt_harga_barang"
-        android:layout_alignBottom="@id/edt_harga_barang"
-        android:src="@drawable/price_tag" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edt_harga_barang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edt_nama_barang"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toRightOf="@id/icon_price_tag"
-        android:hint="Harga Barang"
-        android:textSize="12sp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/icon_minus"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_below="@id/edt_harga_barang"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/ic_minus" />
+                <EditText
+                    android:id="@+id/edt_nama_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama Barang" />
 
-    <ImageView
-        android:id="@+id/icon_plus"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_below="@id/edt_harga_barang"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_plus" />
+            </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/edt_stok_barang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edt_harga_barang"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:layout_toLeftOf="@id/icon_plus"
-        android:layout_toRightOf="@id/icon_minus"
-        android:hint="Stok Barang"
-        android:textSize="12sp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/edt_deskripsi_barang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edt_stok_barang"
-        android:layout_marginBottom="10dp"
-        android:gravity="left|top"
-        android:hint="Masukkan Deskripsi Barang"
-        android:minHeight="60dp"
-        android:textSize="12sp" />
+                <EditText
+                    android:id="@+id/edt_harga_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Harga Barang" />
 
-    <ImageView
-        android:id="@+id/iv_photo"
-        android:layout_width="60dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/edt_deskripsi_barang"
-        android:background="#A7A7A7" />
+            </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/edt_url_gambar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edt_deskripsi_barang"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/iv_photo"
-        android:hint="Masukkan Url Gambar"
-        android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_cek_url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edt_url_gambar"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/iv_photo"
-        android:text="Cek Url Foto" />
+                <ImageView
+                    android:id="@+id/icon_minus"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_minus" />
 
-    <Button
-        android:id="@+id/btn_kirim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Buat Barang" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-</RelativeLayout>
+                    <EditText
+                        android:id="@+id/edt_stok_barang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:gravity="center"
+                        android:hint="Stok Barang" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/icon_plus"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_plus" />
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_deskripsi_barang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edt_stok_barang"
+                    android:layout_marginBottom="10dp"
+                    android:hint="Masukkan Deskripsi Barang" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/cv_image"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_below="@id/edt_deskripsi_barang"
+                    android:background="#A7A7A7"
+                    android:scaleType="fitXY" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_url_gambar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Masukkan Url Gambar" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_cek_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edt_url_gambar"
+                android:layout_toRightOf="@id/iv_photo"
+                android:visibility="gone"
+                android:background="@color/colorPrimary"
+                android:text="(1) Cek Url Foto"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_kirim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="Buat Barang"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

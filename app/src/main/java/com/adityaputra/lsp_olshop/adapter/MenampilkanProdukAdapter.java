@@ -14,7 +14,9 @@ import com.adityaputra.lsp_olshop.R;
 import com.adityaputra.lsp_olshop.model.ProdukModel;
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MenampilkanProdukAdapter extends RecyclerView.Adapter<MenampilkanProdukAdapter.ProdukViewHolder> {
 
@@ -35,7 +37,11 @@ public class MenampilkanProdukAdapter extends RecyclerView.Adapter<MenampilkanPr
     @Override
     public void onBindViewHolder(MenampilkanProdukAdapter.ProdukViewHolder produkViewHolder, int i) {
         produkViewHolder.nama.setText(list.get(i).getNamaBarang());
-        produkViewHolder.harga.setText(list.get(i).getHargaBarang());
+
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
+        produkViewHolder.harga.setText(formatRupiah.format(list.get(i).getHargaBarang()));
         Glide.with(context).load(list.get(i).getImageBarang()).into(produkViewHolder.gambar);
     }
 
@@ -60,8 +66,9 @@ public class MenampilkanProdukAdapter extends RecyclerView.Adapter<MenampilkanPr
                 intent.putExtra("NAMA_BARANG", list.get(getAdapterPosition()).getNamaBarang());
                 intent.putExtra("IMAGE_BARANG", list.get(getAdapterPosition()).getImageBarang());
                 intent.putExtra("DESKRIPSI_BARANG", list.get(getAdapterPosition()).getDeskripsiBarang());
-                intent.putExtra("HARGA_BARANG", list.get(getAdapterPosition()).getHargaBarang());
+                intent.putExtra("HARGA_BARANG", String.valueOf(list.get(getAdapterPosition()).getHargaBarang()));
                 intent.putExtra("STOK_BARANG", list.get(getAdapterPosition()).getStokBarang());
+                intent.putExtra("ALAMAT", list.get(getAdapterPosition()).getAlamat());
                 context.startActivity(intent);
             });
         }
