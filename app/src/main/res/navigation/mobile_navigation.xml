@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/produk">
+
+    <fragment
+        android:id="@+id/produk"
+        android:name="com.adityaputra.lsp_olshop.fragment.ProdukFragment"
+        android:label="@string/produk"
+        tools:layout="@layout/fragment_produk" />
+
+    <fragment
+        android:id="@+id/tambah_produk"
+        android:name="com.adityaputra.lsp_olshop.fragment.TambahFragment"
+        android:label="@string/tambah_produk"
+        tools:layout="@layout/fragment_tambah" />
+
+    <fragment
+        android:id="@+id/hapus_produk"
+        android:name="com.adityaputra.lsp_olshop.fragment.HapusFragment"
+        android:label="@string/hapus_produk"
+        tools:layout="@layout/fragment_hapus" />
+
+    <fragment
+        android:id="@+id/profil"
+        android:name="com.adityaputra.lsp_olshop.fragment.ProfilFragment"
+        android:label="@string/hapus_produk"
+        tools:layout="@layout/fragment_hapus" />
+</navigation>

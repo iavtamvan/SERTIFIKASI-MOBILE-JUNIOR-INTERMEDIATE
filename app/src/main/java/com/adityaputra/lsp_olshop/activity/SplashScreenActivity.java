@@ -16,23 +16,20 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sp = getSharedPreferences("LSP", MODE_PRIVATE);
-                String error = sp.getString("SHARED_LOGIN", "");
+        new Handler().postDelayed(() -> {
+            SharedPreferences sp = getSharedPreferences("LSP", MODE_PRIVATE);
+            String error = sp.getString("SHARED_LOGIN", "");
 
-                // TODO jika belum masuk ke LoginActivity
-                if (error.equalsIgnoreCase("") || TextUtils.isEmpty(error)){
-                    finishAffinity();
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                }
-                // TODO jika sudah nantinya akan masuk ke Home
-                else {
-                    finishAffinity();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            // TODO jika belum masuk ke LoginActivity
+            if (error.equalsIgnoreCase("") || TextUtils.isEmpty(error)){
+                finishAffinity();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+            // TODO jika sudah nantinya akan masuk ke Home
+            else {
+                finishAffinity();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                }
             }
         }, 2000);
     }

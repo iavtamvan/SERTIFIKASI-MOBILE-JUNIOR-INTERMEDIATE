@@ -60,36 +60,33 @@ public class TambahFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
         initView(view);
-        btnKirim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ApiService apiService = ApiConfig.getApiService();
-                apiService.tambahData(edtNamaBarang.getText().toString().trim(),
-                        edtImageBarang.getText().toString().trim(),
-                        edtNDeskripsiBarang.getText().toString().trim(),
-                        edtHargaBarang.getText().toString().trim(),
-                        edtStokBarang.getText().toString().trim())
-                        .enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                if (response.isSuccessful()) {
-                                    Toast.makeText(getActivity(), "Sukses Tambah",
-                                            Toast.LENGTH_SHORT).show();
-                                    edtNamaBarang.setText("");
-                                    edtImageBarang.setText("");
-                                    edtNDeskripsiBarang.setText("");
-                                    edtHargaBarang.setText("");
-                                    edtStokBarang.setText("");
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Toast.makeText(getActivity(), "" + t.getMessage(),
+        btnKirim.setOnClickListener(view1 -> {
+            ApiService apiService = ApiConfig.getApiService();
+            apiService.tambahData(edtNamaBarang.getText().toString().trim(),
+                    edtImageBarang.getText().toString().trim(),
+                    edtNDeskripsiBarang.getText().toString().trim(),
+                    edtHargaBarang.getText().toString().trim(),
+                    edtStokBarang.getText().toString().trim())
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(getActivity(), "Sukses Tambah",
                                         Toast.LENGTH_SHORT).show();
+                                edtNamaBarang.setText("");
+                                edtImageBarang.setText("");
+                                edtNDeskripsiBarang.setText("");
+                                edtHargaBarang.setText("");
+                                edtStokBarang.setText("");
                             }
-                        });
-            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getActivity(), "" + t.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
 
         /*TODO Add listener and function to check and show the result of image url*/
@@ -118,27 +115,21 @@ public class TambahFragment extends Fragment {
         });
 
         edtStokBarang.setText(""+stokBarang);
-        ivPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edtStokBarang.getText().toString().isEmpty()){
-                    resetStokBarang();
-                    tambahStokBarang();
-                }else {
-                    tambahStokBarang();
-                }
+        ivPlus.setOnClickListener(v -> {
+            if (edtStokBarang.getText().toString().isEmpty()){
+                resetStokBarang();
+                tambahStokBarang();
+            }else {
+                tambahStokBarang();
             }
         });
 
-        ivMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edtStokBarang.getText().toString().isEmpty()){
-                    resetStokBarang();
-                    kurangStokBarang();
-                }else {
-                    kurangStokBarang();
-                }
+        ivMinus.setOnClickListener(v -> {
+            if (edtStokBarang.getText().toString().isEmpty()){
+                resetStokBarang();
+                kurangStokBarang();
+            }else {
+                kurangStokBarang();
             }
         });
 

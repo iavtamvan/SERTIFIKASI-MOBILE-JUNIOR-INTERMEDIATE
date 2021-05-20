@@ -105,35 +105,32 @@ public class HapusShowProdukAdapter extends RecyclerView.Adapter<HapusShowProduk
             gambar = itemView.findViewById(R.id.IVProduk);
             button = itemView.findViewById(R.id.btnDelete);
 
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    id = list.get(getAdapterPosition()).getIdBarang();
-                    ApiService apiService = ApiConfig.getApiService();
-                    apiService.deleteData(id).enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            if (response.isSuccessful()) {
-                                try {
-                                    JSONObject jsonObject = new JSONObject(response.body().string());
-                                    String error = jsonObject.optString("error_msg");
-                                    Toast.makeText(context, "" + error, Toast.LENGTH_SHORT).show();
-                                    context.startActivity(new Intent(context, MainActivity.class));
-                                    ((Activity) context).finishAffinity();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+            button.setOnClickListener(view -> {
+                id = list.get(getAdapterPosition()).getIdBarang();
+                ApiService apiService = ApiConfig.getApiService();
+                apiService.deleteData(id).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.body().string());
+                                String error = jsonObject.optString("error_msg");
+                                Toast.makeText(context, "" + error, Toast.LENGTH_SHORT).show();
+                                context.startActivity(new Intent(context, MainActivity.class));
+                                ((Activity) context).finishAffinity();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
                         }
+                    }
 
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(context, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             });
         }
     }

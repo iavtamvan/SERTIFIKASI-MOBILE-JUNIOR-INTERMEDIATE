@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     error, Toast.LENGTH_SHORT).show();
                                             finishAffinity();
                                             startActivity(new Intent(getApplicationContext(),
-                                                    MainActivity.class));
+                                                    HomeActivity.class));
 
                                             SharedPreferences sharedPreferences = getSharedPreferences("LSP",
                                                     MODE_PRIVATE);

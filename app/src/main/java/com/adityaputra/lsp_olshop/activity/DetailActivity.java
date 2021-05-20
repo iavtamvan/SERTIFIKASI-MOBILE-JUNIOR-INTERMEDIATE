@@ -60,28 +60,25 @@ public class DetailActivity extends AppCompatActivity {
         tcStokBarang.setText(stokBarang);
 
 
-        btnKirim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ApiService apiService = ApiConfig.getApiService();
-                apiService.beliData(idBarang).enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(DetailActivity.this, "Sukses",
-                                    Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finishAffinity();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(DetailActivity.this, "" + t.getMessage(),
+        btnKirim.setOnClickListener(v -> {
+            ApiService apiService = ApiConfig.getApiService();
+            apiService.beliData(idBarang).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(DetailActivity.this, "Sukses",
                                 Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finishAffinity();
                     }
-                });
-            }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(DetailActivity.this, "" + t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
         btnEditBarang.setOnClickListener(new View.OnClickListener() {

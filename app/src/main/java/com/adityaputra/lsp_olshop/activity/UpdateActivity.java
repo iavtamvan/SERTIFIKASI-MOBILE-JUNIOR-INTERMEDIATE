@@ -52,12 +52,7 @@ public class UpdateActivity extends AppCompatActivity {
         edtHargaBarang.setText(hargaBarang);
         edtStokBarang.setText(stokBarang);
 
-        btnKirim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateBarang();
-            }
-        });
+        btnKirim.setOnClickListener(view -> updateBarang());
     }
 
     private void updateBarang() {
